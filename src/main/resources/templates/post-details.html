@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Details</title>
+</head>
+<body>
+<img th:if="${post.imageUrl != null}" th:src="@{/uploads/__${post.imageUrl}__}" alt="Post Image">
+<h1 th:text="${post.title}"></h1>
+<img src="data:image/jpg;base64,{{ image }}" alt="Encoded Image">
+<p th:text="${post.content}"></p>
+<p>Written by <span th:text="${post.account.firstName}"></span></p>
+<p>Created at <span th:text="${post.createdAt}"></span></p>
+<p>Updated at <span th:text="${post.updatedAt}"></span></p>
+<a th:href="@{/posts}">Back to Posts</a>
+</body>
+</html>

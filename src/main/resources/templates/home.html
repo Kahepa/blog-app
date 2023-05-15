@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog :: Home</title>
+</head>
+<body>
+<div class="container">
+    <h1>Spring Boot Blog Application</h1>
+    <hr />
+    <form th:action="@{/search}" method="get">
+        <input type="text" name="q" placeholder="Search for posts...">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        <li><a th:href="@{/posts/new}">New Post</a></li>
+    </ul>
+
+    <div class="posts-container">
+        <div class="post" th:each="post : ${posts}">
+            <h2 th:text="${post.title}">Title</h2>
+            <h5>
+                <a th:href="@{/posts/user/{accountId}(accountId=${post.account.id})}">
+                    Written by <span th:text="${post.account.firstName}"></span>
+                </a>
+            </h5>
+            <div th:if="${post.image}">
+                <img th:if="${post.base64Image}" th:attr="src=${post.base64Image}" />
+            </div>
+            <h5 th:text="'Published at ' + ${post.createdAt}">Created At</h5>
+            <p th:text="${#strings.length(post.content) > 100 ? #strings.substring(post.content, 0, 100) + '...' : post.content}">body text</p>
+            <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-primary">Read More</a>
+            <hr />
+        </div>
+    </div>
+    <hr />
+    <ul sec:authorize="!isAuthenticated()">
+        <li><a th:href="@{/register}">Register</a></li>
+        <li><a th:href="@{/login}">Login</a></li>
+    </ul>
+    <div sec:authorize="isAuthenticated()">
+        <form th:action="@{/logout}"
+              method="POST">
+            <div>
+                <label>Hi, <span sec:authentication="name">Username</span></label>
+            </div>
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

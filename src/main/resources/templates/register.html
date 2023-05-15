@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <title>Blog :: Register</title>
+</head>
+<!--<body>-->
+<!--    <div class="container">-->
+<!--        <h1>Spring Boot Blog Application</h1>-->
+<!--        <hr />-->
+<!--        <a th:href="@{/}">Home</a>-->
+<!--        <h2>Register New Account</h2>-->
+<!--        <form action="#"-->
+<!--              th:action="@{/register}"-->
+<!--              th:object="${account}"-->
+<!--              method="POST">-->
+<!--            <div>-->
+<!--                <label for="firstname">First Name</label>-->
+<!--                <input id="firstname" type="text" th:field="*{firstName}" placeholder="First Name"/>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="lastname">Last Name</label>-->
+<!--                <input id="lastname" type="text" th:field="*{lastName}" placeholder="Last Name"/>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="email">Email</label>-->
+<!--                <input id="email" type="text" th:field="*{email}" placeholder="Email"/>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="password">Password</label>-->
+<!--                <input id="password" type="password" th:field="*{password}" placeholder="Password"/>-->
+<!--            </div>-->
+<!--            <button type="submit">Register!</button>-->
+<!--        </form>-->
+<!--    </div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<body class="img js-fullheight" style="background-image: url(images/bg.jpg);">
+<h1>Spring Boot Blog Application</h1>
+<hr />
+<a th:href="@{/}">Home</a>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Login #10</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-wrap p-0">
+
+                    <form action="#"
+                          th:action="@{/register}"
+                          th:object="${account}"
+                          method="POST"
+                        class="signin-form">
+                        <div class="form-group">
+<!--                            <input id="email" type="text" class="form-control" name="email" placeholder="Email" required />-->
+                            <input id="firstname" type="text" th:field="*{firstName}" class="form-control" placeholder="First Name" required/>
+                        </div>
+                        <div class="form-group">
+<!--                            <input id="email" type="text" class="form-control" name="email" placeholder="Email" required />-->
+                            <input id="lastname" type="text" th:field="*{lastName}" class="form-control" placeholder="Last Name" required/>
+                        </div>
+                        <div class="form-group">
+                            <input id="email" type="email"th:field="*{email}" class="form-control" placeholder="Email" required />
+                        </div>
+                        <div th:if="${emailError}" class="alert alert-danger">
+                            <p th:text="${emailError}"></p>
+                        </div>
+                        <div class="form-group">
+                            <input id="password" type="password"  th:field="*{password}" class="form-control" placeholder="Password" minlength="8" required/>
+<!--                            <input id="password-field" class="form-control" type="password" name="password" placeholder="Password" />-->
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary submit px-3">Create Account</button>
+                        </div>
+                        <center>
+                            <p class="mb-4 text-center">Already have an account?<a th:href="@{/login}" style="color: #fff"> Sign Up</a></p>
+                        </center>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

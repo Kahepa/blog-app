@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog :: Post</title>
+</head>
+<body>
+    <div class="container">
+        <a th:href="@{/}">Home</a>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${post.title}"></h5>
+                <img th:if="${image}" th:src="'data:image/jpeg;base64,' + ${image}" />
+                <p class="card-text" th:text="${post.content}"></p>
+                <a th:href="@{/posts}" class="btn btn-secondary">Back to Posts</a>
+            </div>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <div class="btn-group" role="group">
+                <a th:href="@{/posts/{id}/edit(id=${post.id})}" th:if="${canEdit}">
+                    <button type="button" class="btn btn-primary">Edit</button>
+                </a>
+                <a th:href="@{/posts/{id}/delete(id=${post.id})}" th:if="${canDelete}">
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<!--<img src="data:image/jpg;base64,{{ image }}" alt="Encoded Image">-->
