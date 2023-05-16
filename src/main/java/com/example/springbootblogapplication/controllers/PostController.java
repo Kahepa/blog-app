@@ -4,7 +4,9 @@ import com.example.springbootblogapplication.models.Account;
 import com.example.springbootblogapplication.models.Post;
 import com.example.springbootblogapplication.services.AccountService;
 import com.example.springbootblogapplication.services.PostService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -69,6 +71,21 @@ public class PostController {
         }
     }
 
+    @GetMapping("/posts/{id}/download")
+    public void downloadImage(@PathVariable Long id, HttpServletResponse response) throws IOException {
+        Optional<Post> optionalPost = postService.getById(id);
+        if (optionalPost.isPresent()) {
+            Post post = optionalPost.get();
+            byte[] imageBytes = post.getImage();
+            if (imageBytes != null) {
+                response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+                response.setHeader("Content-Disposition", "attachment; filename=\"" + post.getId() + ".jpg\"");
+                response.getOutputStream().write(imageBytes);
+                response.getOutputStream().flush();
+            }
+        }
+    }
+
     @PostMapping("/posts/{id}/edit")
     @PreAuthorize("isAuthenticated()")
     public String updatePost(@PathVariable Long id, @ModelAttribute("existingPost") Post existingPost,
@@ -101,7 +118,6 @@ public class PostController {
     @GetMapping("/posts/new")
     @PreAuthorize("isAuthenticated()")
     public String createNewPost(Model model, Principal principal) {
-
         String authUsername = "anonymousUser";
         if (principal != null) {
             authUsername = principal.getName();
@@ -125,16 +141,25 @@ public class PostController {
         if (principal != null) {
             authUsername = principal.getName();
         }
-        if (post.getAccount().getEmail().compareToIgnoreCase(authUsername) < 0) {
-            // TODO: some kind of error?
-            // our account email on the Post not equal to current logged in account!
-        }
-        if (imageFile != null && !imageFile.isEmpty()) {
-            post.setImage(imageFile.getBytes());
-        }
 
-        postService.save(post);
-        return "redirect:/posts/" + post.getId();
+        Optional<Account> optionalAccount = accountService.findOneByEmail(authUsername);
+        if (optionalAccount.isPresent()) {
+            Account account = optionalAccount.get();
+            if (!account.getEmail().equalsIgnoreCase(post.getAccount().getEmail())) {
+                // Account email on the Post is not equal to the current logged-in account
+                // Handle the error condition here
+            }
+
+            if (imageFile != null && !imageFile.isEmpty()) {
+                post.setImage(imageFile.getBytes());
+            }
+
+            post.setAccount(account);
+            postService.save(post);
+            return "redirect:/posts/" + post.getId();
+        } else {
+            return "redirect:/";
+        }
     }
 
 
@@ -181,6 +206,16 @@ public class PostController {
         model.addAttribute("posts", posts);
         model.addAttribute("query", query);
         return "search-results";
+    }
+
+    @GetMapping("/about-us")
+    public String aboutUs() {
+        return "about-us";
+    }
+
+    @GetMapping("/contact")
+    public String contactUs() {
+        return "contact";
     }
 
 }

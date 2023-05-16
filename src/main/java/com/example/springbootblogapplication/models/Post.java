@@ -11,6 +11,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -60,13 +61,16 @@ public class Post {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedCreatedAt = createdAt.toLocalDate().format(formatter);
+        String formattedUpdatedAt = updatedAt.toLocalDate().format(formatter);
+
         return "Post{" +
                 "id=" + id +
                 ", title='" + title + "'" +
                 ", body='" + content + "'" +
-                ", createdAt='" + createdAt + "'" +
-                ", updatedAt='" + updatedAt + "'" +
+                ", createdAt='" + formattedCreatedAt + "'" +
+                ", updatedAt='" + formattedUpdatedAt + "'" +
                 "}";
     }
-
 }

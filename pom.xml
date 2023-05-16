@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>spring-boot-blog-application</artifactId>
+	<artifactId>Affinity-blog-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-blog-application</name>
 	<description>Demo project for Spring Boot</description>

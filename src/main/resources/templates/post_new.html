@@ -1,39 +1,175 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Blog :: New Post</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/assets/css/fontawesome.css}">
+    <link rel="stylesheet" th:href="@{/css/assets/css/templatemo-stand-blog.css}">
+    <link rel="stylesheet" th:href="@{/css/assets/css/owl.css}">
+
+
+    <title>New Post</title>
 </head>
 <body>
+
+<div id="preloader">
+    <div class="jumper">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<header class="">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}"><h2>Affinity Blog<em>.</em></h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/about-us}">About Us</a>
+                    <li class="nav-item">
+                    <a class="nav-link" th:href="@{/contact}">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <div sec:authorize="!isAuthenticated()" class="button">
+                            <button><a th:href="@{/register}">Register</a></button>
+                            <button><a th:href="@{/login}">Login</a></button>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div sec:authorize="isAuthenticated()">
+                            <a href="#" sec:authentication="name"><span>Username</span></a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div sec:authorize="isAuthenticated()">
+                            <form th:action="@{/logout}"
+                                  method="POST">
+                                <button class="nav-link" type="submit">Logout</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="heading-page header-text">
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-content">
+                        <h4>Write a Blog</h4>
+                        <h2>Share with the World!</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="contact-us">
     <div class="container">
-        <a th:href="@{/}">Home</a>
-        <form action="#"
-              th:action="@{'/posts/new'}"
-              th:object="${post}"
-              method="post"
-              enctype="multipart/form-data">
-            <input type="hidden" th:field="*{account}" />
-            <input type="hidden" th:field="*{createdAt}" />
-            <h2>Write new Post</h2>
-            <div>
-                <label for="new-post-title">Title</label>
-                <input id="new-post-title" type="text" th:field="*{title}" placeholder="Title"/>
-            </div>
-            <div>
-                <label for="new-post-body">Body</label>
-                <textarea id="new-post-body" th:field="*{content}"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="image">Image</label>
-                <input type="file" class="form-control-file" id="image" name="image">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="down-contact">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="sidebar-item contact-form">
+                                <div class="sidebar-heading">
+                                    <h2>Write a Blog</h2>
+                                </div>
+                                <div class="content">
+                                    <form action="#"
+                                          th:action="@{'/posts/new'}"
+                                          th:object="${post}"
+                                          method="post"
+                                          enctype="multipart/form-data">
+                                        <input type="hidden" th:field="*{account.email}" />
+                                        <input type="hidden" th:field="*{createdAt}" />
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12">
+                                                <fieldset>
+                                                    <input id="new-post-title" type="text" th:field="*{title}" placeholder="Title"/>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <fieldset>
+                                                    <textarea id="new-post-body" th:field="*{content}" placeholder="Blog"></textarea>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <fieldset>
+                                                    <input type="file" class="main-button" id="image" name="image"/>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <fieldset>
+                                                    <button type="submit" id="form-submit" class="main-button">Publish Post</button>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-<!--            <button type="submit" class="btn btn-primary">Submit</button>-->
-            <button type="submit">Publish Post</button>
-        </form>
+        </div>
     </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="social-icons">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Behance</a></li>
+                    <li><a href="#">Linkedin</a></li>
+                    <li><a href="#">Dribbble</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-12">
+                <div class="copyright-text">
+                    <p>Copyright 2023 Affinity Blog.
+
+                        | Designed by: KAJYAMBERE Herve Patience</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="/css/vendor/jquery/jquery.min.js"></script>
+    <script src="/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/css/assets/js/custom.js"></script>
+    <script src="/css/assets/js/owl.js"></script>
+    <script src="/css/assets/js/slick.js"></script>
+    <script src="/css/assets/js/isotope.js"></script>
+    <script src="/css/assets/js/accordions.js"></script>
+
 
 </body>
 </html>

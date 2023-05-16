@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+
+  <link th:href="@{css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+  <link rel="stylesheet" th:href="@{css/assets/css/fontawesome.css}">
+  <link rel="stylesheet" th:href="@{css/assets/css/templatemo-stand-blog.css}">
+  <link rel="stylesheet" th:href="@{css/assets/css/owl.css}">
+
+  <title>Contact Us</title>
+
+  </head>
+
+  <body>
+
+  <div id="preloader">
+    <div class="jumper">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <header class="">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" th:href="@{/}"><h2>Affinity Blog<em>.</em></h2></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" th:href="@{/}">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/about-us}">About Us</a>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <div sec:authorize="!isAuthenticated()" class="button">
+                <button><a th:href="@{/register}">Register</a></button>
+                <button><a th:href="@{/login}">Login</a></button>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div sec:authorize="isAuthenticated()">
+                <a href="#" sec:authentication="name" ><span>Username</span></a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}"
+                      method="POST">
+                  <button class="nav-link" type="submit">Logout</button>
+                </form>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <div class="heading-page header-text">
+      <section class="page-heading">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="text-content">
+                <h4>contact us</h4>
+                <h2>let’s stay in touch!</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <section class="contact-us">
+      <div class="container">
+        <div class="row">
+        
+          <div class="col-lg-12">
+            <div class="down-contact">
+              <div class="row">
+                <div class="col-lg-8">
+                  <div class="sidebar-item contact-form">
+                    <div class="sidebar-heading">
+                      <h2>Send us a message</h2>
+                    </div>
+                    <div class="content">
+                      <form th:action="@{contact}"
+                            method="post">
+                        <div class="row">
+                          <div class="col-md-6 col-sm-12">
+                            <fieldset>
+                              <input name="name" type="text" id="name" placeholder="Your name" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-md-6 col-sm-12">
+                            <fieldset>
+                              <input name="email" type="text" id="email" placeholder="Your email" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-md-12 col-sm-12">
+                            <fieldset>
+                              <input name="subject" type="text" id="subject" placeholder="Subject">
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-12">
+                            <fieldset>
+                              <textarea name="message" rows="6" id="message" placeholder="Your Message" required=""></textarea>
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-12">
+                            <fieldset>
+                              <button><a th:href="@{contact}" style="color: white">Send Message</a></button>
+                            </fieldset>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="sidebar-item contact-information">
+                    <div class="sidebar-heading">
+                      <h2>contact information</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                        <li>
+                          <h5>+250 000 000 000</h5>
+                          <span>PHONE NUMBER</span>
+                        </li>
+                        <li>
+                          <h5>harveykahep@gmail.coma</h5>
+                          <span>EMAIL ADDRESS</span>
+                        </li>
+                        <li>
+                          <h5>Kigali, Rwanda,
+                          	<br>KK 206</h5>
+                          <span>STREET ADDRESS</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-12">
+            <div id="map">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.128986522857!2d30.05694041450608!3d-1.9439069983115514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10434c2335a0f92d%3A0xfda7a39ef31c3be3!2sKigali!5e0!3m2!1sen!2srw!4v1621255049013!5m2!1sen!2srw" width="100%" height="450px" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="social-icons">
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Behance</a></li>
+              <li><a href="#">Linkedin</a></li>
+              <li><a href="#">Dribbble</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-12">
+            <div class="copyright-text">
+              <p>Copyright 2023 Affinity Blog.
+                    
+                 | Designed by: KAJYAMBERE Herve Patience</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+  <script src="/css/vendor/jquery/jquery.min.js"></script>
+  <script src="/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/css/assets/js/custom.js"></script>
+  <script src="/css/assets/js/owl.js"></script>
+  <script src="/css/assets/js/slick.js"></script>
+  <script src="/css/assets/js/isotope.js"></script>
+  <script src="/css/assets/js/accordions.js"></script>
+
+
+  </body>
+</html>

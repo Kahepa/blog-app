@@ -27,6 +27,9 @@ public class WebSecurityConfig {
                         .requestMatchers("/rss/**").permitAll()
                         .requestMatchers("/register/**").permitAll()
                         .requestMatchers("/posts/**").permitAll()
+                        .requestMatchers("/static/**").permitAll()
+                        .requestMatchers("/about-us", "/contact").permitAll()
+                        .requestMatchers("/search").permitAll()
                         .requestMatchers(PathRequest.toH2Console()).permitAll()
                         .anyRequest().authenticated()
                 )
@@ -36,7 +39,7 @@ public class WebSecurityConfig {
                     .usernameParameter("email")
                     .passwordParameter("password")
                     .defaultSuccessUrl("/", true)
-                    .failureUrl("/login?error")
+                    .failureUrl("/login-error")
                     .permitAll()
                 );
 

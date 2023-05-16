@@ -1,37 +1,165 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Blog :: Post</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/assets/css/fontawesome.css}">
+    <link rel="stylesheet" th:href="@{/css/assets/css/templatemo-stand-blog.css}">
+    <link rel="stylesheet" th:href="@{/css/assets/css/owl.css}">
+
+    <title>Post</title>
 </head>
 <body>
-    <div class="container">
-        <a th:href="@{/}">Home</a>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${post.title}"></h5>
-                <img th:if="${image}" th:src="'data:image/jpeg;base64,' + ${image}" />
-                <p class="card-text" th:text="${post.content}"></p>
-                <a th:href="@{/posts}" class="btn btn-secondary">Back to Posts</a>
-            </div>
-        </div>
-        <div sec:authorize="isAuthenticated()">
-            <div class="btn-group" role="group">
-                <a th:href="@{/posts/{id}/edit(id=${post.id})}" th:if="${canEdit}">
-                    <button type="button" class="btn btn-primary">Edit</button>
-                </a>
-                <a th:href="@{/posts/{id}/delete(id=${post.id})}" th:if="${canDelete}">
-                    <button type="button" class="btn btn-danger">Delete</button>
-                </a>
-            </div>
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </div>
 
-</body>
-</html>
+    <header class="">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" th:href="@{/}"><h2>Affinity Blog<em>.</em></h2></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/}">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/about-us}">About Us</a>
+                        <li class="nav-item">
+                        <a class="nav-link" th:href="@{/contact}">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <div sec:authorize="!isAuthenticated()" class="button">
+                                <button><a th:href="@{/register}">Register</a></button>
+                                <button><a th:href="@{/login}">Login</a></button>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div sec:authorize="isAuthenticated()">
+                                <a href="#" sec:authentication="name" ><span>Username</span></a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div sec:authorize="isAuthenticated()">
+                                <form th:action="@{/logout}"
+                                      method="POST">
+                                    <button class="nav-link" type="submit">Logout</button>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-<!--<img src="data:image/jpg;base64,{{ image }}" alt="Encoded Image">-->
+
+    <div class="heading-page header-text">
+        <section class="page-heading">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-content">
+                            <h4>Post Details</h4>
+                            <h2>Single blog post</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+        <div class="container">
+            <section class="blog-posts grid-system">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="all-blog-posts">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="blog-post">
+                                            <div class="blog-thumb">
+                                                <img th:if="${image}" th:src="'data:image/jpeg;base64,' + ${image}" />
+                                            </div>
+                                            <button><a th:if="${image}" th:href="@{/posts/{id}/download(id=${post.id})}" style="color: white" class="main-button">Download Image</a></button>
+                                            <div class="down-content">
+                                                <h4 th:text="${post.title}"></h4>
+                                                <ul class="post-info">
+                                                    <li><a th:href="@{/posts/user/{accountId}(accountId=${post.account.id})}">
+                                                        Written by <span th:text="${post.account.firstName}"></span>
+                                                    </a> </li>
+                                                    <li style="font-size: small" th:text="'Published at ' + ${post.createdAt}">Created At</li>
+                                                    <li style="font-size: small" th:text="'Updated at ' + ${post.updatedAt}">Updated At</li>
+                                                </ul>
+                                                <p class="card-text" th:text="${post.content}"></p>
+                                            </div>
+                                            <div th:if="${canEdit}">
+                                                <button><a th:href="@{/posts/{id}/edit(id=${post.id})}" class="main-button">Edit</a></button>>
+                                            </div>
+
+                                            <div th:if="${canDelete}">
+                                                <button><a th:href="@{/posts/{id}/delete(id=${post.id})}" class="button">Delete</a></button>>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="social-icons">
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Behance</a></li>
+                        <li><a href="#">Linkedin</a></li>
+                        <li><a href="#">Dribbble</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-12">
+                    <div class="copyright-text">
+                        <p>Copyright 2023 Affinity Blog.
+
+                            | Designed by: KAJYAMBERE Herve Patience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="/css/vendor/jquery/jquery.min.js"></script>
+    <script src="/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="/css/assets/js/custom.js"></script>
+    <script src="/css/assets/js/owl.js"></script>
+    <script src="/css/assets/js/slick.js"></script>
+    <script src="/css/assets/js/isotope.js"></script>
+    <script src="/css/assets/js/accordions.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+
+    <title>About Us</title>
+
+    <link th:href="@{/css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/assets/css/fontawesome.css}">
+    <link rel="stylesheet" th:href="@{/css/assets/css/templatemo-stand-blog.css}">
+    <link rel="stylesheet" th:href="@{/css/assets/css/owl.css}">
+
+    <title>About Us</title>
+</head>
+<body>
+
+<div id="preloader">
+    <div class="jumper">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<header class="">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}"><h2>Affinity Blog<em>.</em></h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/about-us}">About Us</a>
+                    <li class="nav-item">
+                    <a class="nav-link" th:href="@{/contact}">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <div sec:authorize="!isAuthenticated()" class="button">
+                            <button><a th:href="@{/register}">Register</a></button>
+                            <button><a th:href="@{/login}">Login</a></button>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div sec:authorize="isAuthenticated()">
+                            <a href="#" sec:authentication="name"><span>Username</span></a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div sec:authorize="isAuthenticated()">
+                            <form th:action="@{/logout}"
+                                  method="POST">
+                                <button class="nav-link" type="submit">Logout</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="heading-page header-text">
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-content">
+                        <h4>about us</h4>
+                        <h2>more about us!</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="about-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Welcome to Affinity Blog!</h3>
+                <img th:src="@{/assets/images/about-us.jpg}" alt="">
+                <p>Welcome to Affinity Blog, a Rwandan platform that embraces openness and provides an inclusive space for individuals to express their thoughts and share their expertise. We believe in the power of diverse voices and perspectives, which is why our blog is open to everyone who wishes to contribute.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h4>Our Mission</h4>
+                <p> At Affinity Blog, our mission is to foster a community of knowledge-sharing, creativity, and collaboration. We aim to provide a platform where individuals from all walks of life can freely express their ideas, insights, and experiences through writing. By embracing this openness, we believe that we can create a vibrant and dynamic space where people can connect, learn, and grow together.</p>
+            </div>
+            <div class="col-lg-6">
+                <h4>Our Community</h4>
+                <p>Affinity Blog is driven by the passion and contributions of individuals like you. Whether you're an industry expert, a hobbyist, a student, or simply someone with a story to tell, we welcome you to be a part of our community. Our strength lies in the diversity of our contributors, who come from various backgrounds, cultures, and areas of expertise.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <h4>What We Offer</h4>
+                <p>Affinity Blog covers a wide range of topics, providing readers with a diverse selection of articles to explore. From insightful analyses to practical tips and inspiring stories, we strive to deliver content that informs, educates, and entertains. Whether you're seeking personal growth, professional advice, or simply a moment of inspiration, we have something for everyone.</p>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h4>Our Team</h4>
+                <p>Behind Affinity Blog thrives a passionate and diverse team of writers, editors, and contributors. United by a shared mission, we champion open expression and foster an inclusive environment where everyone feels welcome. Our unwavering dedication ensures a positive experience for all within our vibrant community.Together, we can build a platform that empowers everyone.</p>
+            </div>
+            <div class="col-lg-4">
+                <h4>What We Cover</h4>
+                <p>As an open platform, we cover a wide range of topics that reflect the interests and passions of our contributors. Our articles encompass everything from personal experiences and opinions to professional insights and industry news. We believe that every voice matters, and we encourage our contributors to share their unique perspectives and expertise with our readers.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="social-icons">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Behance</a></li>
+                    <li><a href="#">Linkedin</a></li>
+                    <li><a href="#">Dribbble</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-12">
+                <div class="copyright-text">
+                    <p>Copyright 2023 Affinity Blog.
+
+                        | Designed by: KAJYAMBERE Herve Patience</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script th:src="@{/css/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/css/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/css/assets/js/custom.js}"></script>
+<script th:src="@{/css/assets/js/owl.js}"></script>
+<script th:src="@{/css/assets/js/slick.js}"></script>
+<script th:src="@{/css/assets/js/isotope.js}"></script>
+<script th:src="@{/css/assets/js/accordions.js}"></script>
+
+</body>
+</html>
