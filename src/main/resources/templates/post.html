@@ -47,7 +47,10 @@
                         </li>
                         <li class="nav-item">
                             <div sec:authorize="!isAuthenticated()" class="button">
-                                <button><a th:href="@{/register}">Register</a></button>
+                                <button><a th:href="@{/register}">Sign Up</a></button>
+                            </div>
+                        <li class="nav-item">
+                            <div sec:authorize="!isAuthenticated()" class="button">
                                 <button><a th:href="@{/login}">Login</a></button>
                             </div>
                         </li>
@@ -111,11 +114,11 @@
                                                 <p class="card-text" th:text="${post.content}"></p>
                                             </div>
                                             <div th:if="${canEdit}">
-                                                <button><a th:href="@{/posts/{id}/edit(id=${post.id})}" class="main-button">Edit</a></button>>
+                                                <button><a th:href="@{/posts/{id}/edit(id=${post.id})}" class="main-button">Edit</a></button>
                                             </div>
 
                                             <div th:if="${canDelete}">
-                                                <button><a th:href="@{/posts/{id}/delete(id=${post.id})}" class="button">Delete</a></button>>
+                                                <button><a th:href="@{/posts/{id}/delete(id=${post.id})}" class="button">Delete</a></button>
                                             </div>
                                         </div>
                                     </div>
