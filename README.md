@@ -27,31 +27,31 @@ Before running the Affinity Blog application, ensure that you have the following
 ## Getting Started
 Follow these steps to get the Affinity Blog application up and running:
 
-*Clone the repository:*
+# Clone the repository:
 
 git clone https://github.com/Kahepa/blog-app.git
 
 
-*Navigate to the project directory:*
+# Navigate to the project directory:
 
 cd blog-app
 
-*Build the project using Maven:*
+# Build the project using Maven:
 
 mvn clean install
 
-*Run the application:*
+# Run the application:
 
 mvn spring-boot:run
 
-*Access the application in your web browser:*
+# Access the application in your web browser:
 
 http://localhost:8080
 
 
 ## Default User Accounts
 
-The Affinity Blog application comes with pre-configured user accounts for testing purposes:
+# The Affinity Blog application comes with pre-configured user accounts for testing purposes:
 
 - Email: **user.user@domain.com**
 - Password: password
