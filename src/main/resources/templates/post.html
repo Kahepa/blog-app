@@ -6,15 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
-
     <link th:href="@{/css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-
     <link rel="stylesheet" th:href="@{/css/assets/css/fontawesome.css}">
     <link rel="stylesheet" th:href="@{/css/assets/css/templatemo-stand-blog.css}">
     <link rel="stylesheet" th:href="@{/css/assets/css/owl.css}">
-
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}">
     <title>Post</title>
 </head>
 <body>
@@ -47,11 +44,11 @@
                         </li>
                         <li class="nav-item">
                             <div sec:authorize="!isAuthenticated()" class="button">
-                                <button><a th:href="@{/register}">Sign Up</a></button>
+                                <a class="nav-link" th:href="@{/register}">Sign Up</a>
                             </div>
                         <li class="nav-item">
                             <div sec:authorize="!isAuthenticated()" class="button">
-                                <button><a th:href="@{/login}">Login</a></button>
+                                <a class="nav-link" th:href="@{/login}">Login</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -99,9 +96,9 @@
                                     <div class="col-lg-12">
                                         <div class="blog-post">
                                             <div class="blog-thumb">
-                                                <img th:if="${image}" th:src="'data:image/jpeg;base64,' + ${image}" />
+                                                <img th:if="${image}" th:src="'data:image/jpeg;base64,' + ${image}"/>
                                             </div>
-                                            <button><a th:if="${image}" th:href="@{/posts/{id}/download(id=${post.id})}" style="color: white" class="main-button">Download Image</a></button>
+                                            <button th:if="${image}" th:href="@{/posts/{id}/download(id=${post.id})}" style="color: white" class="main-button">Download Image</button>
                                             <div class="down-content">
                                                 <h4 th:text="${post.title}"></h4>
                                                 <ul class="post-info">
@@ -114,11 +111,11 @@
                                                 <p class="card-text" th:text="${post.content}"></p>
                                             </div>
                                             <div th:if="${canEdit}">
-                                                <button><a th:href="@{/posts/{id}/edit(id=${post.id})}" class="main-button">Edit</a></button>
+                                                <button><a th:href="@{/posts/{id}/edit(id=${post.id})}" style="color: white" class="main-button">Edit</a></button>
                                             </div>
 
                                             <div th:if="${canDelete}">
-                                                <button><a th:href="@{/posts/{id}/delete(id=${post.id})}" class="button">Delete</a></button>
+                                                <button><a th:href="@{/posts/{id}/delete(id=${post.id})}" style="color: white" class="main-button">Delete</a></button>
                                             </div>
                                         </div>
                                     </div>

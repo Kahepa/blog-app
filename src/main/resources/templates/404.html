@@ -1,16 +1,135 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+    <link th:href="@{css/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{css/assets/css/fontawesome.css}">
+    <link rel="stylesheet" th:href="@{css/assets/css/templatemo-stand-blog.css}">
+    <link rel="stylesheet" th:href="@{css/assets/css/owl.css}">
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}">
     <title>Blog :: 404</title>
 </head>
-<body>
-<div class="container">
-    <h1>Sorry, Post Not Found</h1>
-    <hr />
+<body><div id="preloader">
+    <div class="jumper">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 </div>
+
+<header class="">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}"><h2>Affinity Blog<em>.</em></h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/about-us}">About Us</a>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/contact}">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                    <li class="nav-item">
+                        <div sec:authorize="!isAuthenticated()" class="button">
+                            <a class="nav-link" th:href="@{/register}">Sign Up</a>
+                        </div>
+                    <li class="nav-item">
+                        <div sec:authorize="!isAuthenticated()" class="button">
+                            <a class="nav-link" th:href="@{/login}">Login</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div sec:authorize="isAuthenticated()">
+                            <a href="#" sec:authentication="name" >Username</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div sec:authorize="isAuthenticated()">
+                            <form th:action="@{/logout}"
+                                  method="POST">
+                                <button class="nav-link" type="submit">Logout</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="heading-page header-text">
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-content">
+                        <h4>POST NOT FOUND</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="all-blog-posts">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Sorry, Post Not Found</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="social-icons">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Behance</a></li>
+                    <li><a href="#">Linkedin</a></li>
+                    <li><a href="#">Dribbble</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-12">
+                <div class="copyright-text">
+                    <p>Copyright 2023 Affinity Blog.
+
+                        | Designed by: KAJYAMBERE Herve Patience</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="/css/vendor/jquery/jquery.min.js"></script>
+<script src="/css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="/css/assets/js/custom.js"></script>
+<script src="/css/assets/js/owl.js"></script>
+<script src="/css/assets/js/slick.js"></script>
+<script src="/css/assets/js/isotope.js"></script>
+<script src="/css/assets/js/accordions.js"></script>
 
 </body>
 </html>

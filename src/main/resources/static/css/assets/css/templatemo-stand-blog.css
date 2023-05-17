@@ -51,8 +51,19 @@ button{
 	border-radius: 6px;
 }
 
+.main-button a {
+	display: inline-block;
+	background-color: #f48840;
+	color: #fff;
+	font-size: 13px;
+	font-weight: 500;
+	padding: 12px 20px;
+	text-transform: uppercase;
+	transition: all .3s;
+}
+
 .main-button a:hover {
-	background-color: #fb9857;
+	background-color: #020100;
 }
 
 .heading-page {
@@ -253,7 +264,7 @@ header .navbar {
 }
 .navbar .navbar-toggler {
 	border-color: #fff;
-	background-color: #f48840;	
+	background-color: #f48840;
 	height: 46px;
 	outline: none;
 	border-radius: 0px;
