@@ -1,3 +1,5 @@
+## 23994
+
 ## Affinity Blog
 
 Affinity Blog is a Java Spring Boot application that allows users to create, read, update, and delete blog posts. It provides a user-friendly interface for managing blog content and supports authentication and authorization for different user roles.
@@ -73,3 +75,9 @@ http://localhost:8080
 - Spring Security
 - Model-View-Controller (MVC) architecture
 - Bootstrap (for styling)
+
+## APPLICATION DOCUMENTS
+- User Documentation https://docs.google.com/document/d/1ncmpj6oD2m3s1fvjDZDfLKrSCYyPrKzmOpdjDIeGl_Y/edit?usp=sharing
+- Project Plan https://docs.google.com/document/d/1Ug-J88v15Lzad1jbJiK9jNIERCuMQ2a1z1G9uqziGIE/edit?usp=sharing
+- Project Requirement https://docs.google.com/document/d/1XklRf4EebRT3lHdcb5PthTl2AFR5tVHjH2aswifWaaQ/edit?usp=sharing
+- Technical Documentation https://docs.google.com/document/d/1PnDb1amzWpVJIUWBLfbjWct-afhdvFRh9ALQHAJFiTc/edit?usp=sharing
