@@ -77,7 +77,7 @@ http://localhost:8080
 - Bootstrap (for styling)
 
 ## APPLICATION DOCUMENTS
--- User Documentation https://docs.google.com/document/d/1ncmpj6oD2m3s1fvjDZDfLKrSCYyPrKzmOpdjDIeGl_Y/edit?usp=sharing
--- Project Plan https://docs.google.com/document/d/1Ug-J88v15Lzad1jbJiK9jNIERCuMQ2a1z1G9uqziGIE/edit?usp=sharing
--- Project Requirement https://docs.google.com/document/d/1XklRf4EebRT3lHdcb5PthTl2AFR5tVHjH2aswifWaaQ/edit?usp=sharing
--- Technical Documentation https://docs.google.com/document/d/1PnDb1amzWpVJIUWBLfbjWct-afhdvFRh9ALQHAJFiTc/edit?usp=sharing
+- User Documentation https://docs.google.com/document/d/1ncmpj6oD2m3s1fvjDZDfLKrSCYyPrKzmOpdjDIeGl_Y/edit?usp=sharing
+- Project Plan https://docs.google.com/document/d/1Ug-J88v15Lzad1jbJiK9jNIERCuMQ2a1z1G9uqziGIE/edit?usp=sharing
+- Project Requirement https://docs.google.com/document/d/1XklRf4EebRT3lHdcb5PthTl2AFR5tVHjH2aswifWaaQ/edit?usp=sharing
+- Technical Documentation https://docs.google.com/document/d/1PnDb1amzWpVJIUWBLfbjWct-afhdvFRh9ALQHAJFiTc/edit?usp=sharing
